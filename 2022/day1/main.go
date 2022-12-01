@@ -1,47 +1,35 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"os"
 	"sort"
 	"strconv"
+	"strings"
 )
 
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
-
 func main() {
-	input, err := os.Open("./input.txt")
-	check(err)
-	defer input.Close()
+	inputFile, _ := os.ReadFile("./input.txt")
+	inputString := string(inputFile)
+	elvesCalories := strings.Split(inputString, "\n\n")
 
-	// Part 1
-	scanner := bufio.NewScanner(input)
-	totals := make([]int, 0)
-	sum := 0
-	for scanner.Scan() {
-		line := scanner.Text()
-		if line != "" {
-			number, err := strconv.Atoi(line)
-			check(err)
-			sum += number
-		} else {
-			totals = append(totals, sum)
-			sum = 0
+	sums := make([]int, 0)
+	for _, elf := range elvesCalories {
+		sum := 0
+		for _, calorie := range strings.Split(elf, "\n") {
+			val, _ := strconv.Atoi(calorie)
+			sum += val
 		}
+		sums = append(sums, sum)
 	}
-	sort.Ints(totals)
-	mostCalories := totals[len(totals)-1]
-	secondMostCalories := totals[len(totals)-2]
-	thirdMostCalories := totals[len(totals)-3]
-	topThreeCalories := mostCalories + secondMostCalories + thirdMostCalories
-	fmt.Print("Part 1: ")
-	fmt.Println(mostCalories)
-	fmt.Print("Part 2: ")
-	fmt.Println(topThreeCalories)
+	sort.Ints(sums)
 
+	mostCalories := sums[len(sums)-1]
+	threeMostCalories := 0
+	for _, cal := range sums[len(sums)-3:] {
+		threeMostCalories += cal
+	}
+
+	fmt.Println(mostCalories)
+	fmt.Println(threeMostCalories)
 }
