@@ -1,6 +1,5 @@
 import Data.List (findIndex, intersect, isInfixOf)
 import Data.List.Split
-import qualified Data.Map.Strict as HM
 import Data.Maybe
 import Data.Set (fromList, toList)
 
