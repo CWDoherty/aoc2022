@@ -33,11 +33,11 @@ main = do
   -- Part 1
   let rucksacks = splitOn "\n" input
   let compartments = map createCompartments rucksacks
-  let priority = 0
 
   let priorities = map identifyDuplicates compartments
   let scores = map (`calculatePrioritiesScores` priorityValues) priorities
 
+  -- Part 2
   let groups = chunksOf 3 rucksacks
   let badges = map getBadges groups
   let badgeScores = map (`calculatePrioritiesScores` priorityValues) (concat badges)
