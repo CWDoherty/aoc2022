@@ -39,8 +39,8 @@ main = do
 
   -- Part 2
   let groups = chunksOf 3 rucksacks
-  let badges = map getBadges groups
-  let badgeScores = map (`calculatePrioritiesScores` priorityValues) (concat badges)
+  let badges = concat (map getBadges groups)
+  let badgeScores = map (`calculatePrioritiesScores` priorityValues) badges
 
   print (sumList scores)
   print (sumList badgeScores)
