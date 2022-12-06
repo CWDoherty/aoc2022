@@ -1,0 +1,6 @@
+# dune init project day6
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Workspace root:
+# /Users/christopher.doherty/Developer/advent-of-code/cdoherty/2022/day6
+# Auto-detected concurrency: 16

@@ -1,0 +1,23 @@
+(lang dune 3.6)
+
+(name day6)
+
+(generate_opam_files true)
+
+(authors "Chris Doherty")
+
+(maintainers "Chris Doherty")
+
+(license LICENSE)
+
+(documentation https://github.mlbam.net/advent-of-code)
+
+(package
+ (name day6)
+ (synopsis "AOC Day 6")
+ (description "Advent of Code Day 6")
+ (depends ocaml dune core)
+ (tags
+  (aoc mlb)))
+
+; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project
