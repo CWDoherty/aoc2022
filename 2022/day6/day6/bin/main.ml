@@ -22,12 +22,10 @@ let find_index string number_unique =
             else currentIndex := !currentIndex + 1
     	done;
     with
-    	Exit -> Out_channel.output_string stdout (string_of_int (!currentIndex + number_unique));;
+    	Exit -> print_endline (string_of_int (!currentIndex + number_unique));;
 
 (* Part 1 *)
 find_index input 4;;
-
-print_endline "";;
 (* Part 2 *)
 find_index input 14;;
 
