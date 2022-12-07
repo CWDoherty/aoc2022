@@ -6,6 +6,8 @@
 
 #include <vector>
 
+#include <algorithm>
+
 using namespace std;
 
 int main() {
@@ -52,7 +54,7 @@ int main() {
     }
 
     vector < int > intersection;
-    set_intersection(firstRange.begin(), firstRange.end(),
+    std::set_intersection(firstRange.begin(), firstRange.end(),
       secondRange.begin(), secondRange.end(),
       back_inserter(intersection));
 

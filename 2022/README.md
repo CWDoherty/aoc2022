@@ -1,43 +1,41 @@
 # 2022
 
 Coming Soon: Dockerfiles
-### Day 1
+### Day 1 (Racket)
 ```shell
-brew install minimal-racket
-raco pkg install --auto advent-of-code
-racket main.rkt
+podman build . -t day1
+podman run day1
 ```
 
-### Day 2
+### Day 2 (Swift)
 ```shell
 swift main.swift
 ```
 
-### Day 3
+### Day 3 (Haskell)
 ```shell
-brew install ghc cabal-install
-cabal install --lib split
-runhaskell main.hs
+podman build . -t day3
+podman run day3
 ```
 
-### Day 4
+### Day 4 (C++)
 ```shell
-g++ -std=c++11 -o main main.cpp
-./main 
+podman build . -t day4
+podman run day4
 ```
 
-### Day 5
+### Day 5 (C#)
 Install .NET: https://learn.microsoft.com/en-us/dotnet/core/install/macos
 ```shell
-dotnet run
+podman build . -t day5
+podman run day5
 ```
 
-### Day 6
-Install OCaml:
+### Day 6 (OCaml)
 ```shell
-brew install opam
-opam init
-opam install dune merlin ocaml-lsp-server odoc ocamlformat utop dune-release
-cd day6
-dune exec day6
+# Increase podman mem because OCaml is crazy
+podman machine init --cpus 2 --memory 4096
+podman machine start
+podman build . -t day6
+podman run day6
 ```
