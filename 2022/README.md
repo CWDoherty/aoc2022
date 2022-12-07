@@ -25,7 +25,6 @@ podman run day4
 ```
 
 ### Day 5 (C#)
-Install .NET: https://learn.microsoft.com/en-us/dotnet/core/install/macos
 ```shell
 podman build . -t day5
 podman run day5
