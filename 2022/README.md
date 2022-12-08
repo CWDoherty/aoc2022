@@ -38,3 +38,9 @@ podman machine start
 podman build . -t day6
 podman run day6
 ```
+
+### Day 7 (Ruby)
+```shell
+podman build . -t day7
+podman run day7
+```
