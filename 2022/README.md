@@ -44,3 +44,9 @@ podman run day6
 podman build . -t day7
 podman run day7
 ```
+
+### Day 8 (Dart)
+```shell
+podman build . -t day8
+podman run day8
+```
