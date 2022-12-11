@@ -18,21 +18,18 @@ type Knot(x: int, y: int, visited: Set<string>, child: option<Knot>) =
 
         if child.IsSome then
             let childKnot = child.Value
-            let horizontalDiff = x - child.Value.X
-            let verticalDiff = y - child.Value.Y
+            let horizontalDiff = abs (x - child.Value.X)
+            let verticalDiff = abs (y - child.Value.Y)
+            let horizontalDir = if (x - child.Value.X) > 0 then 1 elif (x - child.Value.X) < 0 then -1 else 0
+            let verticalDir = if (y - child.Value.Y) > 0 then 1 elif (y - child.Value.Y) < 0 then -1 else 0
 
-            if (horizontalDiff < -1) then // Left
-                childKnot.Move(childKnot.X - 1, y)
-            elif (horizontalDiff > 1) then // Right
-                childKnot.Move(childKnot.X + 1, y)
-            elif (verticalDiff < -1) then // Down
-                childKnot.Move(x, childKnot.Y - 1)
-            elif (verticalDiff > 1) then // Up
-                childKnot.Move(x, childKnot.Y + 1)
-            elif (horizontalDiff + verticalDiff >= 3) then // Diagonal
-                let xDir = if horizontalDiff >= 0 then 1 else -1;
-                let yDir = if verticalDiff >= 0 then 1 else -1;
-                childKnot.Move(childKnot.X + xDir, childKnot.Y + yDir)
+            if (horizontalDiff = 0 && verticalDiff = 2) then // Up/Down
+                childKnot.Move(childKnot.X, childKnot.Y  + verticalDir)
+            elif (horizontalDiff = 2 && verticalDiff = 0) then // Right/Left
+                childKnot.Move(childKnot.X + horizontalDir, childKnot.Y)
+            elif (horizontalDiff + verticalDiff >= 3) then // when parent is on different line but the child should still move
+                childKnot.Move(childKnot.X + horizontalDir, childKnot.Y + verticalDir)
+
 
 let moveKnots(direction: string, count: int, head: Knot) =
     let mutable x = head.X
@@ -68,7 +65,6 @@ let tail2 = Knot(0, 0, Set.empty.Add("0,0"), Some tail3)
 let tail1 = Knot(0, 0, Set.empty.Add("0,0"), Some tail2)
 let head2 = Knot(0, 0, Set.empty.Add("0,0"), Some tail1)
 
-// Part 1
 input |> Seq.iter(fun line ->
     let direction = line.Split(" ")[0]
     let count = line.Split(" ")[1] |> int
