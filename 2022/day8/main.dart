@@ -61,10 +61,13 @@ Set<String> getVisible(row, forest) {
   final column = forest.map((s) => s[row]).toList();
   final visibleFromBottom = getVisibleFromBottom(row, column.sublist(1));
   final visibleFromTop = getVisibleFromTop(row, column.sublist(0, column.length - 1));
-  visible.addAll(visibleFromRight);
-  visible.addAll(visibleFromLeft);
-  visible.addAll(visibleFromBottom);
-  visible.addAll(visibleFromTop);
+  visible.addAll([
+    ...visibleFromRight,
+    ...visibleFromLeft,
+    ...visibleFromBottom,
+    ...visibleFromTop
+  ]);
+
   return visible;
 }
 
