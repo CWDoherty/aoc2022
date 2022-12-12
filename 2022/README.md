@@ -51,7 +51,7 @@ podman build . -t day8
 podman run day8
 ```
 
-### Day 8 (F#)
+### Day 9 (F#)
 ```shell
 podman build . -t day9
 podman run day9
