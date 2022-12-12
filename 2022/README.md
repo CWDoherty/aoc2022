@@ -1,6 +1,5 @@
 # 2022
 
-Coming Soon: Dockerfiles
 ### Day 1 (Racket)
 ```shell
 podman build . -t day1
@@ -55,4 +54,10 @@ podman run day8
 ```shell
 podman build . -t day9
 podman run day9
+```
+
+### Day 10 (Julia)
+```shell
+podman build . -t day10
+podman run day10
 ```
