@@ -1,4 +1,5 @@
 .idea
+lib/
 **/.build
 
 2022/day03/main
