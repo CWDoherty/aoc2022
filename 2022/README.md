@@ -12,3 +12,4 @@
 * Day 10 - Julia
 * Day 11 - Elixir
 * Day 12 - Groovy
+* Day 13 - Nim
