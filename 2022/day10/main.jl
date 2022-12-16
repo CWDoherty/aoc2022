@@ -45,5 +45,5 @@ end
 println("Part 1: $interstingCyclesSum")
 println("Part 2:")
 for row in pixels
-    println(row)
+    println(join(row, " ", ""))
 end
