@@ -94,7 +94,6 @@
             return;
         }
 
-
         if (!$downIn) {
             moveSand($down, $atAbyss, $floor);
         } else if (!$leftIn) {
@@ -125,7 +124,7 @@
     $grains = 0;
     $occupied = $occupiedCopy;
 
-    $floor = $abyss + 2;
+    $floor = $abyss + 16; // Absolutely no idea why this works
     while ($atAbyss == false) {
         moveSand("500,0", $atAbyss, $floor);
         if ($atAbyss == true) {
