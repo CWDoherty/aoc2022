@@ -33,14 +33,14 @@
 
                 if ($currentY >= $nextY) {
                     for ($j = $currentY; $j >= $nextY; $j--) {
-                        if (!in_array("$currentX,$j", $occupied)) {
-                            $occupied[] = "$currentX,$j";
+                        if (!array_key_exists("$currentX,$j", $occupied)) {
+                            $occupied["$currentX,$j"] = "#";
                         }
                     }
                 } else {
                     for ($j = $currentY; $j <= $nextY; $j++) {
-                        if (!in_array("$currentX,$j", $occupied)) {
-                            $occupied[] = "$currentX,$j";
+                        if (!array_key_exists("$currentX,$j", $occupied)) {
+                            $occupied["$currentX,$j"] = "#";
                         }
                     }
                 }
@@ -51,14 +51,14 @@
 
                 if ($currentX > $nextX) {
                     for ($j = $currentX; $j >= $nextX; $j--) {
-                        if (!in_array("$,$currentY", $occupied)) {
-                            $occupied[] = "$j,$currentY";
+                        if (!array_key_exists("$,$currentY", $occupied)) {
+                            $occupied["$j,$currentY"] = "#";
                         }
                     }
                 } else {
                     for ($j = $currentX; $j <= $nextX; $j++) {
-                        if (!in_array("$,$currentY", $occupied)) {
-                            $occupied[] = "$j,$currentY";
+                        if (!array_key_exists("$,$currentY", $occupied)) {
+                            $occupied["$j,$currentY"] = "#";
                         }
                     }
                 }
@@ -66,7 +66,7 @@
         }
     }
 
-    function moveSand($coord ,&$atAbyss) {
+    function moveSand($coord ,&$atAbyss, $floor) {
         global $occupied;
         global $abyss;
         $x = explode(",", $coord)[0];
@@ -77,34 +77,42 @@
         $down = "$x,$nextY";
         $left = "$leftX,$nextY";
         $right = "$rightX,$nextY";
+        $downIn = array_key_exists($down, $occupied) || $nextY == $floor;
+        $leftIn = array_key_exists($left, $occupied) || $nextY == $floor;
+        $rightIn = array_key_exists($right, $occupied) || $nextY == $floor;
 
-        if ($nextY > $abyss * 2) {
+        // Part 1
+        if ($floor == null && $nextY >= $abyss * 2) {
             $atAbyss = true;
             return;
         }
 
+        // Part 2
+        if ($coord == "500,0" && $downIn && $leftIn && $rightIn) {
+            $atAbyss = true;
+            $occupied[$coord] = "o";
+            return;
+        }
 
-        if (!in_array($down, $occupied)) {
-            moveSand($down, $atAbyss);
-        } else if (!in_array($left, $occupied)) {
-            moveSand($left, $atAbyss);
-        } else if (!in_array($right, $occupied)) {
-            moveSand($right, $atAbyss);
+
+        if (!$downIn) {
+            moveSand($down, $atAbyss, $floor);
+        } else if (!$leftIn) {
+            moveSand($left, $atAbyss, $floor);
+        } else if (!$rightIn) {
+            moveSand($right, $atAbyss, $floor);
         } else {
-            if (!in_array($coord, $occupied)) {
-//                echo "Adding: $coord\n";
-                $occupied[] = $coord;
-            }
+            $occupied[$coord] = "o";
         }
     }
 
-    $abyss = array_reduce(array_map(fn($coord): int => (int) explode(",", $coord)[1], $coords), "max") + 1;
+    $abyss = array_reduce(array_map(fn($coord): int => (int) explode(",", $coord)[1], $coords), "max");
     $atAbyss = false;
     $grains = 0;
+    $occupiedCopy = $occupied;
 
-    echo $abyss;
     while ($atAbyss == false) {
-        moveSand("500,0", $atAbyss);
+        moveSand("500,0", $atAbyss,  null);
         if ($atAbyss == true) {
             break;
         }
@@ -113,4 +121,18 @@
 
     echo "Part 1: $grains\n";
 
+    $atAbyss = false;
+    $grains = 0;
+    $occupied = $occupiedCopy;
 
+    $floor = $abyss + 2;
+    while ($atAbyss == false) {
+        moveSand("500,0", $atAbyss, $floor);
+        if ($atAbyss == true) {
+            break;
+        }
+        $grains++;
+    }
+
+    $grains++;
+    echo "Part 2: $grains\n";
