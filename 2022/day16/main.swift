@@ -47,8 +47,6 @@ func getDistances() -> [String: [String: Int]] {
     return distanceMap
 }
 
-var calls = 0;
-
 func traversePipes(minutes: Int, currentValve: String, unOpenedValves: Set<String>, pressure: Int) -> Int {
     let score = minutes * valveMap[currentValve]!.1;
     let distances = getDistances()
