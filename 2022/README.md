@@ -1,7 +1,7 @@
 # 2022
 
 * Day 1 - Racket
-* Day 2 - Swift
+* Day 2 - Lua
 * Day 3 - Haskell
 * Day 4 - C++
 * Day 5 - C#
@@ -14,3 +14,5 @@
 * Day 12 - Groovy
 * Day 13 - Nim
 * Day 14 - PHP
+* Day 15 - Perl
+* Day 16 - Swift?????????
