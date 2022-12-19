@@ -16,4 +16,4 @@
 * Day 14 - PHP
 * Day 15 - Perl
 * Day 16 - Swift
-* Day 17 - Scala
+* Day 18 - Clojure
