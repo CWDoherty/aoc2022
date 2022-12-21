@@ -17,3 +17,4 @@
 * Day 15 - Perl
 * Day 16 - Swift
 * Day 18 - Clojure
+* Day 20 - Go
