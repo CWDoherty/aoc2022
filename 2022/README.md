@@ -18,3 +18,4 @@
 * Day 16 - Swift
 * Day 18 - Clojure
 * Day 20 - Go
+* Day 21 - Rust
